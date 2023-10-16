@@ -3,12 +3,15 @@
 require "sidekiq"
 require "active_support/current_attributes"
 require "active_job/arguments"
+require "active_support/core_ext/module/attribute_accessors"
 
 require_relative "serialized_current_attributes/version"
 
 # Code is pretty directly taken from https://github.com/sidekiq/sidekiq/blob/main/lib/sidekiq/middleware/current_attributes.rb, and adjusted so it uses ActiveJob argument serialization to support storing models.
 module Sidekiq
   module SerializedCurrentAttributes
+    mattr_accessor :discard_destroyed, default: false
+
     class Save
       include Sidekiq::ClientMiddleware
 
@@ -29,6 +32,10 @@ module Sidekiq
       end
 
       def serialize(attributes)
+        if Sidekiq::SerializedCurrentAttributes.discard_destroyed
+          attributes = attributes.reject { |_, value| value.is_a?(GlobalID::Identification) && value.respond_to?(:destroyed?) && value.destroyed? }
+        end
+
         serialized_values = ActiveJob::Arguments.serialize(attributes.values)
         attributes.keys.zip(serialized_values).to_h
       end

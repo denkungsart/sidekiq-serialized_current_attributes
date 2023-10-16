@@ -22,7 +22,20 @@ require "sidekiq/serialized_current_attributes"
 Sidekiq::SerializedCurrentAttributes.persist("Myapp::Current")
 # or multiple current attributes
 Sidekiq::SerializedCurrentAttributes.persist(["Myapp::Current", "Myapp::OtherCurrent"])
+
+# Discard destroyed records when serializing Current
+Sidekiq::SerializedCurrentAttributes.discard_destroyed = true
 ```
+
+## Changelog
+
+### unreleased
+
+- Add option to discard destroyed records
+
+### 0.1.0
+
+- Initial release
 
 ## License
 

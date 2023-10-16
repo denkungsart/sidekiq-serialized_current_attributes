@@ -29,7 +29,7 @@ Sidekiq::SerializedCurrentAttributes.discard_destroyed = true
 
 ## Changelog
 
-### unreleased
+### 0.1.1 (2023-10-16)
 
 - Add option to discard destroyed records
 

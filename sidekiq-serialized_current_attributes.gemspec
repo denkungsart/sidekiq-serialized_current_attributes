@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Serialize CurrentAttributes for Sidekiq"
   spec.homepage = "https://github.com/denkungsart/sidekiq-serialized_current_attributes"
-  spec.license = "MIT"
+  spec.license = "LGPL-3.0-only"
   spec.required_ruby_version = ">= 2.6.0"
 
   spec.metadata["homepage_uri"] = spec.homepage

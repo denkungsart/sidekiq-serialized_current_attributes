@@ -29,7 +29,7 @@ Sidekiq::SerializedCurrentAttributes.discard_destroyed = true
 
 ## Changelog
 
-### unreleased
+### 0.1.3 (2024-10-28)
 
 - Reference global ::ActiveJob
 - Prepend Load to server middleware

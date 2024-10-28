@@ -36,7 +36,7 @@ module Sidekiq
           attributes = attributes.reject { |_, value| value.is_a?(GlobalID::Identification) && value.respond_to?(:destroyed?) && value.destroyed? }
         end
 
-        serialized_values = ActiveJob::Arguments.serialize(attributes.values)
+        serialized_values = ::ActiveJob::Arguments.serialize(attributes.values)
         attributes.keys.zip(serialized_values).to_h
       end
     end
@@ -69,7 +69,7 @@ module Sidekiq
       end
 
       def deserialize(attributes)
-        deserialized_values = ActiveJob::Arguments.deserialize(attributes.values)
+        deserialized_values = ::ActiveJob::Arguments.deserialize(attributes.values)
         attributes.keys.zip(deserialized_values).to_h
       end
     end

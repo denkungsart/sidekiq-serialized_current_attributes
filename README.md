@@ -29,6 +29,10 @@ Sidekiq::SerializedCurrentAttributes.discard_destroyed = true
 
 ## Changelog
 
+### unreleased
+
+- Reference global ::ActiveJob
+
 ### 0.1.2 (2024-01-08)
 
 - Change license to LGPL
